@@ -1,0 +1,33 @@
+html {
+  background-color: var(--color-bg-screen);
+  color: var(--color-text-dark);
+  font-family: var(--font-main);
+  font-size: 16px;
+
+  scroll-behavior: smooth;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn {
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.btn-primary {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-white);
+}
+
+.btn-secondary {
+  background: none;
+  border: 2px solid var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
