@@ -1,5 +1,7 @@
-import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+
+import User from "../models/User.js";
+import generateToken from "../utils/genToken.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -31,6 +33,32 @@ export const registerUser = async (req, res) => {
       email: user.email,
       message: "User has been successfully registered!",
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check Input Fields
+    if (!email || !password) {
+      return res.status(400).json({ message: "Please fill all fields" });
+    }
+
+    const user = await User.findOne({ email }).select("+password");
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(401).json({ message: "Invalid email or password" });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
