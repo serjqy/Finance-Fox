@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
+import { TransactionProvider } from "./context/TransactionContext";
+
 import Layout from "./components/Layout";
 
 import Dashboard from "./pages/Dashboard";
@@ -15,19 +17,21 @@ import Register from "./pages/Register";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/transactions" element={<Transactions />} />
-            <Route path="/budgets" element={<Budgets />} />
-            <Route path="/pots" element={<Pots />} />
-            <Route path="/reccuring-bills" element={<ReccuringBills />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <TransactionProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/budgets" element={<Budgets />} />
+              <Route path="/pots" element={<Pots />} />
+              <Route path="/reccuring-bills" element={<ReccuringBills />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </TransactionProvider>
     </AuthProvider>
   );
 }

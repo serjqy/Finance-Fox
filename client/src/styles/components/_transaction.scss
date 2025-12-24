@@ -1,0 +1,31 @@
+.transaction {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  &-card {
+    background-color: var(--color-bg-white);
+    padding: 1rem;
+    border-radius: 1rem;
+
+    &__content {
+      margin-bottom: 1rem;
+    }
+    &__title {
+      margin-bottom: 1rem;
+    }
+    &__type {
+      margin-bottom: 0.5rem;
+    }
+
+    &__description {
+      margin-bottom: 1rem;
+    }
+
+    &__setting {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: end;
+      align-items: center;
+    }
+  }
+}

@@ -2,13 +2,14 @@ import Transaction from "../models/Transaction.js";
 
 export const createTransaction = async (req, res) => {
   try {
-    const { amount, type, description } = req.body;
+    const { title, amount, type, description } = req.body;
 
-    if (!amount || !type) {
+    if (!title || !amount || !type) {
       return res.status(400).json({ message: "Please fill all fields" });
     }
 
     const transaction = await Transaction.create({
+      title,
       amount,
       type,
       description,

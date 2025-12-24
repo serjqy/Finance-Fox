@@ -19,6 +19,7 @@ html {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-size: 1.125rem;
+  border: 2px solid var(--color-bg-dark);
 }
 
 .btn-primary {
@@ -28,6 +29,5 @@ html {
 
 .btn-secondary {
   background: none;
-  border: 2px solid var(--color-bg-dark);
   color: var(--color-text-dark);
 }
