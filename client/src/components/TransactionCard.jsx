@@ -1,6 +1,8 @@
 import React from "react";
+import { useTransactions } from "../context/TransactionContext";
 
 const TransactionCard = ({ transaction }) => {
+  const { deleteTransaction, error, loading } = useTransactions();
   return (
     <div className="transaction-card">
       <div className="transaction-card__content">
@@ -20,8 +22,13 @@ const TransactionCard = ({ transaction }) => {
         </span>
       </div>
       <div className="transaction-card__setting">
-        <button className="btn btn-secondary">Edit</button>
-        <button className="btn btn-primary">Delete</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => deleteTransaction(transaction._id)}
+          disabled={loading}
+        >
+          {loading ? "Deleting..." : "Delete"}
+        </button>
       </div>
     </div>
   );

@@ -33,3 +33,25 @@ export const getTransactions = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteTransaction = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const transaction = await Transaction.findById(id);
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+
+    if (transaction.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+
+    await transaction.deleteOne();
+
+    res.json({ message: "Transaction deleted", id });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};

@@ -63,6 +63,17 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
+  const deleteTransaction = async (id) => {
+    await fetch(`http://localhost:8000/api/transactions/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    setTransactions((prev) => prev.filter((t) => t._id !== id));
+  };
+
   useEffect(() => {
     if (user) {
       fetchTransactions();
@@ -79,6 +90,7 @@ export const TransactionProvider = ({ children }) => {
         error,
         fetchTransactions,
         addTransaction,
+        deleteTransaction,
       }}
     >
       {children}
