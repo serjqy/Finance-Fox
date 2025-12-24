@@ -38,6 +38,7 @@ export const TransactionProvider = ({ children }) => {
   };
 
   const addTransaction = async (transactionData) => {
+    if (!user) return;
     try {
       const res = await fetch("http://localhost:8000/api/transactions", {
         method: "POST",
@@ -57,6 +58,8 @@ export const TransactionProvider = ({ children }) => {
       setTransactions((prev) => [data, ...prev]);
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

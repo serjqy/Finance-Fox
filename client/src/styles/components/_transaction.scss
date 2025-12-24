@@ -1,7 +1,38 @@
 .transaction {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
+  .transaction-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+  .transaction-form {
+    width: 30%;
+    margin-bottom: 1rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background-color: var(--color-bg-white);
+      padding: 1rem;
+      border-radius: 1rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      input,
+      select {
+        background: none;
+        border: none;
+        outline: none;
+        background-color: var(--color-bg-screen);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.125rem;
+      }
+    }
+  }
   &-card {
     background-color: var(--color-bg-white);
     padding: 1rem;
