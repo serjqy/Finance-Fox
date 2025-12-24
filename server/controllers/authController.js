@@ -21,12 +21,14 @@ export const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Create New User
     const user = await User.create({
       username,
       email,
       password: hashedPassword,
     });
 
+    // Return User's DATA
     res.status(201).json({
       _id: user._id,
       username: user.username,
@@ -47,8 +49,10 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ message: "Please fill all fields" });
     }
 
+    // Find User by email
     const user = await User.findOne({ email }).select("+password");
 
+    // If user exists and passwords are correct return User's DATA
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user._id,
